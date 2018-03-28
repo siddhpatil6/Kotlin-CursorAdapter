@@ -38,6 +38,8 @@ In Channge Cursor it swaps new cursor with old cursor and than closes old cursor
 // Switch to new cursor and update contents of ListView
 `adapter.changeCursor(todoCursor);`
 // Called when a new Loader needs to be created
+
+
 `public void changeCursor(Cursor cursor)
 {`
         
