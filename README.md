@@ -1,3 +1,4 @@
+## Cursor Adapter  - Basic Information
 * In order to understand this, you must first understand how BaseAdapter works, since CursorAdapter is a subclass of BaseAdapter.
 
 
