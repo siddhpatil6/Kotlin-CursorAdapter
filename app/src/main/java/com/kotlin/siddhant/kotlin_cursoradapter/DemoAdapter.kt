@@ -25,9 +25,10 @@ public class DemoAdapter(context: Context?,cursorz:Cursor?,flag:Int): CursorAdap
 
     override fun bindView(view: View?, p1: Context?, cursor: Cursor?) {
         var tvName=view?.findViewById<TextView>(R.id.tvName)
-        var text=cursorz?.getColumnIndex(cursor?.getColumnName(1)!!)
-        Log.d("kk-->>",text.toString())
-        tvName?.text=cursorz?.getString(cursor?.getColumnIndexOrThrow("NAME")!!)
+//        var text=cursorz?.getColumnIndex(cursor?.getColumnName(1)!!)
+//        Log.d("kk-->>",text.toString())
+
+        tvName?.text=cursor?.getString(cursor?.getColumnIndexOrThrow("NAME")!!)
     }
 
 
