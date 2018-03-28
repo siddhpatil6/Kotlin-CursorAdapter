@@ -12,7 +12,8 @@
 
 
 * As an example, imagine a listview on a device which can show upto 11 list items on the screen. In this case, newView() will be called upto 11 times. However, bindView() will be called many times whenever you scroll the list view. The 11 views you created in your newView method will be reused again and again as you scroll the list.
-
+ 
+* **Pros - You dont need call notifyDataSetChanged() method whenever you want to refresh list, changeCursor and swapCursor do that for you**
 
 * bind view method will be called multiple time and it sets data multiple time whenever we scroll listview
 <br>
