@@ -38,39 +38,47 @@ In Channge Cursor it swaps new cursor with old cursor and than closes old cursor
 // Switch to new cursor and update contents of ListView
 `adapter.changeCursor(todoCursor);`
 // Called when a new Loader needs to be created
-`public void changeCursor(Cursor cursor) {
+`public void changeCursor(Cursor cursor)
+{`
+        
         Cursor old = swapCursor(cursor);
+        
         if (old != null) {
             old.close();
         }
-    }`
+`}`
 
 You don’t have to open and close the Cursor yourself, the loader will do this for you. This is the most important reason why you have to use swapCursor, it doesn’t close the Cursor when you swap it with another Cursor.
 // Switch to new cursor and update contents of ListView
 `adapter.swapCursor(todoCursor);`
-`public Cursor swapCursor(Cursor newCursor)
-{
-        if (newCursor == mCursor) {
-            return null;
-        }
-        Cursor oldCursor = mCursor;
-        if (oldCursor != null) {
-            if (mChangeObserver != null) oldCursor.unregisterContentObserver(mChangeObserver);
-            if (mDataSetObserver != null) oldCursor.unregisterDataSetObserver(mDataSetObserver);
-        }
-        mCursor = newCursor;
-        if (newCursor != null) {
-            if (mChangeObserver != null) newCursor.registerContentObserver(mChangeObserver);
-            if (mDataSetObserver != null) newCursor.registerDataSetObserver(mDataSetObserver);
-            mRowIDColumn = newCursor.getColumnIndexOrThrow("_id");
-            mDataValid = true;
-            // notify the observers about the new cursor
-            notifyDataSetChanged();
-        } else {
-            mRowIDColumn = -1;
-            mDataValid = false;
-            // notify the observers about the lack of a data set
-            notifyDataSetInvalidated();
-        }
-        return oldCursor;
-}`
+
+
+`public Cursor swapCursor(Cursor newCursor){`
+
+    if (newCursor == mCursor)
+    {
+       
+         return null;
+    
+    }
+    Cursor oldCursor = mCursor;
+    if (oldCursor != null) {
+        if (mChangeObserver != null) oldCursor.unregisterContentObserver(mChangeObserver);
+        if (mDataSetObserver != null) oldCursor.unregisterDataSetObserver(mDataSetObserver);
+    }
+    mCursor = newCursor;
+    if (newCursor != null) {
+        if (mChangeObserver != null) newCursor.registerContentObserver(mChangeObserver);
+        if (mDataSetObserver != null) newCursor.registerDataSetObserver(mDataSetObserver);
+        mRowIDColumn = newCursor.getColumnIndexOrThrow("_id");
+        mDataValid = true;
+        // notify the observers about the new cursor
+        notifyDataSetChanged();
+    } else {
+        mRowIDColumn = -1;
+        mDataValid = false;
+        // notify the observers about the lack of a data set
+        notifyDataSetInvalidated();
+    }
+    return oldCursor;
+`}`
